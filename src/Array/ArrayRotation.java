@@ -25,13 +25,16 @@ public class ArrayRotation {
      */
     private static void rotateArray(int[] array, int n) {
         int temp[] = new int[n];
+        //Copy the elements to be moved in a temp array
         for (int j = 0; j < n; j++) {
             temp[j] = array[j];
         }
 
+        //Move the elements to the left by n indices
         for (int j = 0; j < array.length - n; j++) {
             array[j] = array[j + n];
         }
+        //Copy the elements of temp array into their proper position in orignal array
         for (int j = 0; j < n; j++) {
             array[array.length - n + j] = temp[j];
         }
