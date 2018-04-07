@@ -12,8 +12,10 @@ import java.util.Arrays;
  */
 public class ArrayRotation {
     public static void main(String[] args) {
-        int[] array = {3, 1, 6, 7, 2, 8};
+        int[] array = {3, 1, 6, 7, 2, 1, 5, 9, 15, 8};
+        System.out.println(Arrays.toString(array));
         rotateArray(array, 4);
+
     }
 
 
