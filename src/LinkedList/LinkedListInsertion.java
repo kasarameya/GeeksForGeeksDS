@@ -11,6 +11,7 @@ package LinkedList;
  */
 public class LinkedListInsertion {
 
+    //Head of the linked list
     InsertNode head;
 
     public static void main(String[] args) {
@@ -21,7 +22,27 @@ public class LinkedListInsertion {
         linkedList.insertAfter(6, 8);
         linkedList.insertAtEnd(9);
         linkedList.printList();
+        linkedList.deleteNode(6);
+        System.out.println();
+        linkedList.printList();
+    }
 
+    /**
+     * Delete the node having a particular value
+     *
+     * @param deleteValue to be deleted
+     */
+
+    private void deleteNode(int deleteValue) {
+        if (head != null) {
+            InsertNode node = head;
+            InsertNode prevNode = head;
+            while (node.data != deleteValue) {
+                prevNode = node;
+                node = node.nextNode;
+            }
+            prevNode.nextNode = node.nextNode;
+        }
     }
 
     /**
