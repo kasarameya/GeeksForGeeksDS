@@ -1,7 +1,7 @@
 package LinkedList;
 
 /**
- * Perform 3 types of Node Insertion on LinkedList
+ * Perform 3 types of Node Insertion on LinkedList and Deletion
  * 1. At Front
  * 2. After the given Node
  * 3. At the end
@@ -12,19 +12,34 @@ package LinkedList;
 public class LinkedListInsertion {
 
     //Head of the linked list
-    InsertNode head;
+    node head;
 
     public static void main(String[] args) {
         LinkedListInsertion linkedList = new LinkedListInsertion();
         linkedList.insertAtFront(5);
         linkedList.insertAtFront(6);
         linkedList.insertAtFront(7);
+        linkedList.insertAtFront(7);
         linkedList.insertAfter(6, 8);
+        linkedList.insertAtEnd(9);
+        linkedList.insertAtEnd(9);
         linkedList.insertAtEnd(9);
         linkedList.printList();
         linkedList.deleteNode(6);
         System.out.println();
         linkedList.printList();
+        linkedList.findMiddleElement();
+    }
+
+    private void findMiddleElement() {
+        int count = 0;
+        node traverseNode1 = head, traverseNode2 = head;
+        while (traverseNode1 != null && traverseNode1.nextNode != null) {
+            traverseNode1 = traverseNode1.nextNode.nextNode;
+            traverseNode2 = traverseNode2.nextNode;
+            count++;
+        }
+        System.out.println("The middle element is at index :-" + count);
     }
 
     /**
@@ -35,8 +50,8 @@ public class LinkedListInsertion {
 
     private void deleteNode(int deleteValue) {
         if (head != null) {
-            InsertNode node = head;
-            InsertNode prevNode = head;
+            node node = head;
+            LinkedListInsertion.node prevNode = head;
             while (node.data != deleteValue) {
                 prevNode = node;
                 node = node.nextNode;
@@ -49,7 +64,7 @@ public class LinkedListInsertion {
      * Print all the nodes present in the linkedlist
      */
     private void printList() {
-        InsertNode node = head;
+        node node = head;
         while (node != null) {
             System.out.println(node.data);
             node = node.nextNode;
@@ -64,9 +79,9 @@ public class LinkedListInsertion {
      */
     private void insertAfter(int prevNodeValue, int data) {
         if (head == null) {
-            head = new InsertNode(data);
+            head = new node(data);
         } else {
-            InsertNode prevNode = head;
+            node prevNode = head;
             while (prevNode.data != prevNodeValue) {
                 if (prevNode.nextNode == null) {
                     throw new NullPointerException("Given value not present in list");
@@ -74,7 +89,7 @@ public class LinkedListInsertion {
                 prevNode = prevNode.nextNode;
 
             }
-            InsertNode node = new InsertNode(data);
+            node node = new node(data);
             node.nextNode = prevNode.nextNode;
             prevNode.nextNode = node;
         }
@@ -87,13 +102,13 @@ public class LinkedListInsertion {
      */
     private void insertAtEnd(int data) {
         if (head == null) {
-            head = new InsertNode(data);
+            head = new node(data);
         } else {
-            InsertNode lastNode = head;
+            node lastNode = head;
             while (lastNode.nextNode != null) {
                 lastNode = lastNode.nextNode;
             }
-            InsertNode node = new InsertNode(data);
+            node node = new node(data);
             lastNode.nextNode = node;
         }
 
@@ -107,19 +122,19 @@ public class LinkedListInsertion {
     private void insertAtFront(int data) {
 
         if (head == null) {
-            head = new InsertNode(data);
+            head = new node(data);
         } else {
-            InsertNode node = new InsertNode(data);
+            node node = new node(data);
             node.nextNode = head;
             head = node;
         }
     }
 
-    class InsertNode {
+    class node {
         int data;
-        InsertNode nextNode;
+        node nextNode;
 
-        public InsertNode(int data) {
+        public node(int data) {
             this.data = data;
             nextNode = null;
         }
